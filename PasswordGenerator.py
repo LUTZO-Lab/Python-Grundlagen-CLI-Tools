@@ -62,7 +62,7 @@ def generate_password(length):
             print(f"SpecialCharacter: {SpecialCharacter}{Password[i]}")
     if not Uppercase or not Lowercase or not Number or not SpecialCharacter:
         print("again")
-        return generate_password(length)
+        return generate_password(length)#Hier würde er die Recursion erzeugen. 
     return Password
 
 
