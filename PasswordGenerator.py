@@ -1,5 +1,5 @@
 #In diesem mini-Projekt möchte ich einen password generator erstellen.
-import random as rm
+import time
 
 ListOfCharacters = []
 
@@ -8,10 +8,11 @@ with open("PasswordLiberie.txt", "r") as file:
     for i in characters:
         ListOfCharacters.append(i)
 
-
-def randomNum():
-    global ListOfCharacters
-    return rm.randint(0, len(ListOfCharacters) - 1)
+def randomNum(maxnumber):
+    global seed
+    timeNow = time.time()
+    number = int((timeNow - int(timeNow)) * 1000000)
+    return number%maxnumber
 
 def generate_password(length):
     Password = ""
@@ -20,7 +21,10 @@ def generate_password(length):
     Number = False
     SpecialCharacter = False
     for i in range(length):
-        Password += ListOfCharacters[randomNum()]
+        Listlength = len(ListOfCharacters)
+        print(Listlength)
+        print(randomNum(Listlength))
+        Password += str(randomNum(Listlength))
         if Password[i].isupper():
             Uppercase = True
         elif Password[i].islower():
@@ -32,6 +36,5 @@ def generate_password(length):
     if not Uppercase or not Lowercase or not Number or not SpecialCharacter:
         return generate_password(length)
     return Password
-
-
+print(generate_password(12))
 
